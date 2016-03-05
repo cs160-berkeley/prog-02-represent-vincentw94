@@ -1,20 +1,16 @@
 # PROG 02: Represent!
 
-Briefly describe your app here.
+Represent Basic Functionality
 
 ## Authors
 
-FirstName LastName ([your_email@berkeley.edu](mailto:your_email@berkeley.edu))
+Vincent Wang ([vincent_wang@berkeley.edu](mailto:vincent_wang@berkeley.edu))
 
 ## Demo Video
 
-See [your demo video title here] (https://link_to_your_video)
-
-## Screenshots
-
-<img src="screenshots/main.png" height="400" alt="Screenshot"/>
+See [Demo Video] (https://www.youtube.com/watch?v=Bm-AeyueWis)
+Please read description!
 
 ## Acknowledgments
 
-* Hat tip to anyone who's code was used
-* Any other support
+Me, myself, stackoverflow
