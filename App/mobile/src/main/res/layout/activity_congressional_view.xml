@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cong_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.cs160.vincent.represent.CongressionalView">
+    <!--android:background="@drawable/flag"-->
+
+    <TextView
+        android:id="@+id/cong_result_title"
+        android:textSize="24sp"
+        android:textColor="@color/dark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        />
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="30dp" />
+
+
+    <!-- Margin is set by transparent divider, because Android ignores everything else -->
+    <ListView
+        android:id="@+id/cong_repr"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+
+        android:divider="@android:color/transparent"
+        android:dividerHeight="10.0sp"/>
+        />
+
+
+
+    <Button
+        android:id="@+id/backToHome"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="@string/button_cong_back"
+        android:onClick="backToHome"
+        />
+
+
+</LinearLayout>

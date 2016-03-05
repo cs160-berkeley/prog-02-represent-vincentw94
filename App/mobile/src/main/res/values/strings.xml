@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Represent</string>
+
+    <!-- Used by main view -->
+    <string name="find_repr">Find your representatives:</string>
+    <string name="zip_hint">Enter Zip Code</string>
+    <string name="zip_err">Please enter a valid zip code.</string>
+    <string name="button_search">Search Zip</string>
+    <string name="button_use_curr_loc">Use Current Location</string>
+    <string name="zip_intent_key">zip_key</string>
+
+    <!-- Used by cong view -->
+    <string name="button_cong_back">Try another location</string>
+    <string name="cong_entry_pic">Profile Picture</string>
+    <string name="button_more_info">More Info</string>
+    <string name="rep_name_key">rep_name_key</string>
+    <string name="rep_party_key">rep_party_key</string>
+    <string name="rep_term_key">rep_term_key</string>
+    <string name="rep_type_key">rep_type_key</string>
+    <string name="rep_img_fn">rep_img_fn</string>
+
+    <!-- Used by det view -->
+    <string name="det_img_desc">Large Image</string>
+
+</resources>

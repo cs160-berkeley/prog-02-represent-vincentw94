@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.wearable.view.BoxInsetLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.cs160.vincent.represent.MainWearActivity"
+    tools:deviceIds="wear_round">
+
+    <!--<android.support.wearable.view.DismissOverlayView-->
+        <!--android:id="@+id/dismiss_overlay"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_width="match_parent"/>-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        app:layout_box="all">
+
+        <ImageView
+            android:id="@+id/rep_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/img_alt"/>
+
+        <TextView
+            android:id="@+id/rep_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:gravity="center"/>
+
+    </LinearLayout>
+</android.support.wearable.view.BoxInsetLayout>
