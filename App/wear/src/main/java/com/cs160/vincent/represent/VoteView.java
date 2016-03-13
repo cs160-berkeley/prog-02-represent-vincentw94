@@ -10,18 +10,20 @@ public class VoteView extends Activity {
 
     private int ind = 0;
 
+    public static double obama, romney;
+    public static String location;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vote_view);
 
-        int zip = getIntent().getIntExtra("zip", -1);
-        String county = resolveCountyFromZip(zip);
-        int[] votes = get2012Votes(zip);
+//        int zip = getIntent().getIntExtra("zip", -1);
+//        String county = resolveCountyFromZip(zip);
 
-        ((TextView) findViewById(R.id.vote_loc)).setText(county);
-        ((TextView) findViewById(R.id.obama_perc)).setText(String.format("%d %%", votes[0]));
-        ((TextView) findViewById(R.id.romney_perc)).setText(String.format("%d %%", votes[1]));
+        ((TextView) findViewById(R.id.vote_loc)).setText(location);
+        ((TextView) findViewById(R.id.obama_perc)).setText(String.format("%.1f %%", obama));
+        ((TextView) findViewById(R.id.romney_perc)).setText(String.format("%.1f %%", romney));
     }
 
     private String resolveCountyFromZip(int zip) {
@@ -34,12 +36,6 @@ public class VoteView extends Activity {
             case 3: return "Albany County, NY";
             default: return "Boulder County, CO";
         }
-    }
-
-    private int[] get2012Votes(int zip) {
-        // TODO: use API
-        int obama = 40 + (int) (Math.random()*20);
-        return new int[] {obama, 100-obama};
     }
 }
 

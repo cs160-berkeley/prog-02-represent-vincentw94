@@ -17,19 +17,27 @@ import android.view.MotionEvent;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class MainWearActivity extends Activity {
     public static final int IMG_SIZE = 150;
 
-    private List<RepData> repData = new ArrayList<RepData>();
-    private int currInd, currZip;
+    public static RepData[] repData = null, repDataUpdate = null;
+    private int currInd;
 
     private GestureDetector gestures;
     private SensorManager sensorManager;
     private ShakeListener shakeListener;
+
+    public void toVoteView() {
+        if (MainWearActivity.repData != null) {
+            Log.d("LISTENER", "toVote!");
+            Intent intent = new Intent(this, VoteView.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,12 +48,11 @@ public class MainWearActivity extends Activity {
         final WatchViewStub stub = (WatchViewStub)findViewById(R.id.watch_view_stub);
         stub.setOnLayoutInflatedListener((new WatchViewStub.OnLayoutInflatedListener() {
             public void onLayoutInflated(WatchViewStub stub) {
-                currZip = intent.getIntExtra("zip", -1);
+                int loaded = intent.getIntExtra("loaded", -1);
 
-                // query zip
-                Log.d("LAYOUT INFLATED", "zip = " + currZip);
-                if (currZip != -1) {
-                    repData = query(currZip);
+                // display info received from phone
+                Log.d("LAYOUT INFLATED", "loaded = " + loaded);
+                if (loaded != -1) {
                     currInd = 0;
                     update();
                 }
@@ -101,7 +108,7 @@ public class MainWearActivity extends Activity {
         Log.d("PARENT", "parent onSwipe()");
 
         // swipe to dismiss
-        if (repData.isEmpty()) {
+        if (repData == null) {
             if (right)
                 finish();
             return;
@@ -113,30 +120,28 @@ public class MainWearActivity extends Activity {
             currInd = 0;
             finish();
         }
-        else if (currInd == repData.size())
-            currInd = repData.size() - 1;
+        else if (currInd == repData.length) {
+            toVoteView();
+            currInd = repData.length - 1;
+        }
         else
             update();
     }
 
     private void update() {
         ImageView img = (ImageView) findViewById(R.id.rep_img);
-        img.setImageBitmap(repData.get(currInd).img);
+        img.setImageBitmap(repData[currInd].img);
 
         TextView name = (TextView) findViewById(R.id.rep_name);
-        name.setText(repData.get(currInd).name);
+        name.setText(repData[currInd].name);
     }
 
     public int getCurrInd() {
         return currInd;
     }
 
-    public int getZip() {
-        return currZip;
-    }
-
     public boolean loadedData() {
-        return !repData.isEmpty();
+        return repData != null;
     }
 }
 
@@ -183,11 +188,7 @@ class SwipeListener extends GestureDetector.SimpleOnGestureListener {
     @Override
     public void onLongPress(MotionEvent e) {
         Log.d("LISTENER", "onLongPress()");
-
-        Intent intent = new Intent(context, VoteView.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.putExtra("zip", context.getZip());
-        context.startActivity(intent);
+//        context.toVoteView();
     }
 
     @Override
@@ -243,6 +244,11 @@ class RepData {
 
     public RepData(String name, Bitmap img) {
         this.name = name;
-        this.img = Bitmap.createScaledBitmap(img, MainWearActivity.IMG_SIZE, MainWearActivity.IMG_SIZE, true);
+        setImg(img);
+    }
+
+    public void setImg(Bitmap img) {
+        if (img != null)
+            this.img = Bitmap.createScaledBitmap(img, MainWearActivity.IMG_SIZE, MainWearActivity.IMG_SIZE, true);
     }
 }

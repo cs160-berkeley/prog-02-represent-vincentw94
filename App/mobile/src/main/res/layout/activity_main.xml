@@ -10,8 +10,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@drawable/flag"
     tools:context="com.cs160.vincent.represent.MainActivity">
+    <!--android:background="@drawable/flag"-->
 
     <TextView
         android:layout_width="wrap_content"

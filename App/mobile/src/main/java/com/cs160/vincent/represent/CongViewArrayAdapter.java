@@ -36,33 +36,37 @@ public class CongViewArrayAdapter extends ArrayAdapter<CongViewEntry> {
         final CongViewEntry entry = getItem(position);
 
         ImageView congPic = (ImageView) convertView.findViewById(R.id.cong_entry_pic);
-        congPic.setImageBitmap(entry.getImg());
+        if (entry.getImg() != null)
+            congPic.setImageBitmap(entry.getImg());
 
         TextView congInfo = (TextView) convertView.findViewById(R.id.cong_entry_info);
         congInfo.setText(Html.fromHtml(entry.getHtmlText()));
 
         // add listener here, when access to the CongViewEntry is convenient
+        final int positionCpy = position;
         Button moreInfo = (Button) convertView.findViewById(R.id.more_info_button);
         moreInfo.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View view) {
                 Resources res = getContext().getResources();
                 Intent intent = new Intent(getContext(), DetailedView.class);
-                intent.putExtra(res.getString(R.string.rep_name_key), entry.getName());
-                intent.putExtra(res.getString(R.string.rep_party_key), entry.getParty());
-                intent.putExtra(res.getString(R.string.rep_type_key), entry.isSenator());
-                intent.putExtra(res.getString(R.string.rep_term_key), 2016);
+                intent.putExtra("ind", positionCpy);
+//                intent.putExtra(res.getString(R.string.rep_name_key), entry.getName());
+//                intent.putExtra(res.getString(R.string.rep_party_key), entry.getParty());
+//                intent.putExtra(res.getString(R.string.rep_type_key), entry.isSenator());
+//                intent.putExtra(res.getString(R.string.rep_term_key), 2016);
+//                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
 
                 // save image locally
-                String fn = res.getString(R.string.rep_img_fn);
-                try {
-                    ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-                    entry.getImg().compress(Bitmap.CompressFormat.PNG, 100, bytes);
-                    FileOutputStream out = getContext().openFileOutput(fn, Context.MODE_PRIVATE);
-                    out.write(bytes.toByteArray());
-                    out.close();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+//                String fn = res.getString(R.string.rep_img_fn);
+//                try {
+//                    ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+//                    entry.getImg().compress(Bitmap.CompressFormat.PNG, 100, bytes);
+//                    FileOutputStream out = getContext().openFileOutput(fn, Context.MODE_PRIVATE);
+//                    out.write(bytes.toByteArray());
+//                    out.close();
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
                 getContext().startActivity(intent);
             }
         });

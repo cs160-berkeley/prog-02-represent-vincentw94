@@ -11,4 +11,6 @@
     <string name="img_obama">Obama</string>
     <string name="img_romney">Romney</string>
 
+    <string name="to_vote_view">Vote View</string>
+
 </resources>

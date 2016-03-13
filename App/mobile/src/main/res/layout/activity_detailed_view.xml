@@ -28,7 +28,7 @@
 
     <View
         android:id="@+id/separator"
-        android:layout_below="@id/detailed_img"
+        android:layout_below="@id/det_profile"
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:background="?android:attr/listDivider"/>
@@ -39,7 +39,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/separator"
-        android:maxLines="200"
         android:scrollbars="vertical"
         />
 
